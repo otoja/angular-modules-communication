@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+Base angular Event Bus app to send notifications between all modules
+-->
+<html>
+    <head>
+        <title>Event Bus</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.js"></script>
+    </head>
+    <body>
+        <script>
+            angular.element(document).ready(function () {
+                angular.bootstrap(document.getElementById("app1"), ["app1","mainApp"]);
+                angular.bootstrap(document.getElementById("app2"), ["app2","mainApp"]);
+            });
+        </script>
+        <div id="main">
+            <div id="app1" >
+                <div ng-controller="App1Ctr">
+                    {{name}}
+                    <input type="button" ng-click="fireEvent()"/>
+                </div>
+            </div>
+
+            <div id="app2">
+                <div ng-controller="App2Ctr">
+                    {{name}}
+                    <input type="button" ng-click="fireEvent()"/>
+                </div>
+            </div>
+        </div>
+        <script src="app/app.js" type="text/javascript"></script>
+        <script src="app/service/EventBus.js" type="text/javascript"></script>
+        <script src="app/service/EventDriveService.js" type="text/javascript"></script>
+        <script src="app1/app.js" type="text/javascript"></script>
+        <script src="app2/app.js" type="text/javascript"></script>
+        <script src="app1/controller/App1Ctr.js" type="text/javascript"></script>
+        <script src="app2/controller/App2Ctr.js" type="text/javascript"></script>
+    </body>
+</html>
